@@ -12,6 +12,9 @@ RSpec.describe Article, type: :model do
   it { is_expected.to validate_uniqueness_of(:url) }
   it { is_expected.to validate_uniqueness_of(:imageUrl) }
 
-  it { is_expected.to have_many(:launches).dependent(:destroy) }
-  it { is_expected.to have_many(:events).dependent(:destroy) }
+  it { is_expected.to have_many(:article_launches).dependent(:destroy) }
+  it { is_expected.to have_many(:launches).through(:article_launches) }
+
+  it { is_expected.to have_many(:article_events).dependent(:destroy) }
+  it { is_expected.to have_many(:events).through(:article_events) }
 end
