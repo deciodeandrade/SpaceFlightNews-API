@@ -25,7 +25,6 @@ RSpec.describe "/articles", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       article = Article.create! valid_attributes
-      puts "xyz (#{article.attributes})"
       get article_url(article), as: :json
       expect(response).to be_successful
     end

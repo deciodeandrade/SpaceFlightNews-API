@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   def create
     @article = Article.new(article_params)
+    set_new_associations_params
 
     if @article.save
       render :show, status: :created, location: @article
@@ -23,6 +24,8 @@ class ArticlesController < ApplicationController
 
   # PATCH/PUT /articles/1
   def update
+    set_new_associations_params
+    
     if @article.update(article_params)
       render :show, status: :ok, location: @article
     else
@@ -43,6 +46,19 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:featured, :title, :url, :imageUrl, :newsSite, :summary, :publishedAt)
+      article = params.require(:article).permit(Article.column_names - ["id, created_at", "updated_at"])
+    end
+
+    def launch_params
+      params[:launches]&.map{|launch| Launch.find_or_create(provider: launch[:provider])}
+    end
+
+    def event_params
+      params[:events]&.map{|event| Event.new(provider: event[:provider])}
+    end
+
+    def set_new_associations_params
+      @article.launches = launch_params ? launch_params : []
+      @article.events = event_params ? launch_params : []
     end
 end
