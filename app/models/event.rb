@@ -1,3 +1,4 @@
 class Event < ApplicationRecord
-  belongs_to :article
+  has_many :article_events, dependent: :destroy
+  has_many :articles, through: :article_events
 end

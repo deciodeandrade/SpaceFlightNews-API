@@ -1,3 +1,4 @@
 class Launch < ApplicationRecord
-  belongs_to :article
+  has_many :article_launches, dependent: :destroy
+  has_many :articles, through: :article_launches
 end

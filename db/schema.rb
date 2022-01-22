@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_203913) do
+ActiveRecord::Schema.define(version: 2022_01_22_115303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "article_events", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_article_events_on_article_id"
+    t.index ["event_id"], name: "index_article_events_on_event_id"
+  end
+
+  create_table "article_launches", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.bigint "launch_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_article_launches_on_article_id"
+    t.index ["launch_id"], name: "index_article_launches_on_launch_id"
+  end
 
   create_table "articles", force: :cascade do |t|
     t.boolean "featured"
@@ -43,6 +61,10 @@ ActiveRecord::Schema.define(version: 2022_01_21_203913) do
     t.index ["article_id"], name: "index_launches_on_article_id"
   end
 
+  add_foreign_key "article_events", "articles"
+  add_foreign_key "article_events", "events"
+  add_foreign_key "article_launches", "articles"
+  add_foreign_key "article_launches", "launches"
   add_foreign_key "events", "articles"
   add_foreign_key "launches", "articles"
 end
