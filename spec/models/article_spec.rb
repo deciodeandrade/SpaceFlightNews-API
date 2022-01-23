@@ -10,7 +10,6 @@ RSpec.describe Article, type: :model do
   it { is_expected.to validate_presence_of(:publishedAt) }
   
   it { is_expected.to validate_uniqueness_of(:url) }
-  it { is_expected.to validate_uniqueness_of(:imageUrl) }
 
   it { is_expected.to have_many(:article_launches).dependent(:destroy) }
   it { is_expected.to have_many(:launches).through(:article_launches) }
