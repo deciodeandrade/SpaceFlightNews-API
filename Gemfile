@@ -34,6 +34,9 @@ gem 'rest-client'
 # Gem for pagination
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
+# Gem to schedule with CRON 
+gem 'whenever', require: false
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
