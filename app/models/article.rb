@@ -13,4 +13,6 @@ class Article < ApplicationRecord
     validates :summary, presence: true
     validates :publishedAt, presence: true
 
+    max_paginates_per 5
+
 end
