@@ -9,6 +9,9 @@
  <br><br>
 >  Este projeto é uma REST API que utiliza os dados do projeto Space Flight News, uma API pública com informações relacionadas a voos espaciais. 
 
+## Apresentação
+https://www.loom.com/embed/d2531a3dfd3f43888139d98947e5b156
+
 ## 💻 Tecnologias usadas
 
 ### Linguagem:
