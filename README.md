@@ -53,7 +53,10 @@ $ rails db:seed
 ```bash
 $ rspec
 ```
-
+## Agendar carregamento diário do banco
+```bash
+$ bundle exec whenever --update-crontab --set environment='development'
+```
 ## Para subir o servidor da API...
 ```bash
 $ rails s
